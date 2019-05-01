@@ -1,0 +1,53 @@
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+html{
+    height: 100%;
+}
+
+body{
+    /* background: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%); */
+    background: linear-gradient(to right, rgb(75, 121, 161), rgb(40, 62, 81));
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+    height: 100%;
+    margin:2em;
+    padding: 2em 2em;
+}
+
+.container{
+    /* height:25em;
+    width:45em; */
+    height: 60%;
+    width: 90%;
+    margin:2em auto;
+    padding: 20px 20px;
+    background:rgba(0,0,0,0.2);
+    /* border: 2px solid; */
+    box-shadow: 7px 10px rgb(87, 128, 165);
+    /* vertical-align: center; */
+    
+}
+
+.info-container{
+    background: rgba(182, 182, 182, 0.3);
+    border-radius: 30px;
+    height: 30%;
+    width: 37%;
+    margin:4em auto;
+    padding: 1em 2em;
+    /* text-align: center; */
+    padding-left: 2.5em;
+}
+
+h4{
+    color: azure;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.2em; 
+    margin: 2em auto;
+} 
+
+#map{
+        height: 100%;
+}
