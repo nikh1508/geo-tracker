@@ -65,6 +65,7 @@ def get_latest_data(dev_id):
         cursor.execute('SELECT * FROM dev_{} ORDER BY timestamp DESC LIMIT 1'.format(dev_id))
     except mysql.connector.Error as err:
         log.error('Could not fetch latest data for dev_{}. Error : {}'.format(dev_id, err))
+        return {'Last Updated': '-', 'Latitude': '-', 'Longitude': '-', 'Satellite Count' : '-'}
     res = cursor.fetchall()
     if res != None:
         lat, lng, sat_count, last_update = res[0][1:]
@@ -75,7 +76,7 @@ def get_latest_data(dev_id):
         data['Last Updated'] =  (("{} days ".format(days) if days > 0 else "") + 
                                 ("{} hrs ".format(hours) if hours > 0 or days > 0 else "") +
                                 ("{} min ".format(minutes) if minutes > 0 or days > 0 or hours > 0 else "") + 
-                                ("{} sec ".format(seconds)))
+                                ("{} sec ".format(seconds))) + 'ago'
         data['Latitude'] = float(int(lat / 100.)) + (lat % 100.) / 60.      # conversion from ddmm.mmmmmm to decimal degrees
         data['Longitude'] = float(int(lng / 100.)) + (lng % 100.) / 60.     # conversion from dddmm.mmmmmm to decimal degrees
         data['Satellite Count'] = sat_count

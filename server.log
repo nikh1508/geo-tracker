@@ -773,3 +773,13 @@
 [INFO   ] : May 01, 19 | 17:34:38 : werkzeug : 127.0.0.1 - - [01/May/2019 17:34:38] "GET /api/get_latest_data HTTP/1.1" 200 -
 [INFO   ] : May 01, 19 | 17:34:43 : werkzeug : 127.0.0.1 - - [01/May/2019 17:34:43] "GET /api/get_latest_data HTTP/1.1" 200 -
 [INFO   ] : May 01, 19 | 17:34:48 : werkzeug : 127.0.0.1 - - [01/May/2019 17:34:48] "GET /api/get_latest_data HTTP/1.1" 200 -
+[INFO   ] : May 01, 19 | 17:51:08 : database : Connecting to Mysql server
+[INFO   ] : May 01, 19 | 17:51:08 : database : Mysql server connected
+[INFO   ] : May 01, 19 | 17:51:08 : __main__ : Starting flask server
+[INFO   ] : May 01, 19 | 17:51:08 : werkzeug :  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+[INFO   ] : May 01, 19 | 17:51:08 : werkzeug :  * Restarting with stat
+[INFO   ] : May 01, 19 | 17:51:08 : database : Connecting to Mysql server
+[INFO   ] : May 01, 19 | 17:51:08 : database : Mysql server connected
+[INFO   ] : May 01, 19 | 17:51:08 : __main__ : Starting flask server
+[WARNING] : May 01, 19 | 17:51:08 : werkzeug :  * Debugger is active!
+[INFO   ] : May 01, 19 | 17:51:08 : werkzeug :  * Debugger PIN: 157-886-966

@@ -8,7 +8,7 @@ import database
 
 app = Flask(__name__)
 
-latest_data = {'Last Update': '25 sec ago', 'Latitude': 12.823521, 'Longitude': 80.043310,  'Satellite Count' : 12}
+#latest_data = {'Last Update': '25 sec ago', 'Latitude': 12.823521, 'Longitude': 80.043310,  'Satellite Count' : 12}
 
 @app.route('/')
 def index():
