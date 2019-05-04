@@ -17,7 +17,7 @@ LED Status Codes
 #define TRIES 5                   // AT Command Retries
 #define GPS_LOC_FIX_TIMEOUT 60000 //GPS Location Fix Timeout
 #define HTTP_RESPONSE 15000       //HTTP Response Timeout
-#define debug                     //Debug Mode
+// #define debug                     //Debug Mode
 
 class SIM808
 {
@@ -29,12 +29,15 @@ class SIM808
     String sat_count;
     SoftwareSerial *port;
 
-    // void blink(int count);
-    // void flush();
-    // void sendAT(String command);
-    // bool sendAT(String command, String expected);
-    // String readResponse();
-    // bool readResponse(String expected);
+    //Debug
+    void blink(int count);
+    void blink(int status, int command);
+    //Serial
+    void flush();
+    void sendAT(String command);
+    bool sendAT(String command, String expected);
+    String readResponse();
+    bool readResponse(String expected);
 
   public:
     SIM808(int _rx, int _tx, int _led) : rx(_rx), tx(_tx), led_pin(_led)
@@ -42,21 +45,14 @@ class SIM808
         port = new SoftwareSerial(rx, tx);
         sim.begin(9600);
         pinMode(led_pin, OUTPUT);
-        latitude = "0000.000000";   //ddmm.mmmmmm   //HTTP Post returns error if the coordinates are zeroes
-        longitude = "00000.000000"; //ddd.mmmmmm
-        // latitude = "1249.404180";
-        // longitude = "8002.539566";
+        // latitude = "0000.000000";   //ddmm.mmmmmm   //HTTP Post returns error if the coordinates are zeroes
+        // longitude = "00000.000000"; //ddd.mmmmmm
+        latitude = "1249.404180";
+        longitude = "8002.539566";
         sat_count = "0";
     }
     //Serial
     void serialToModule();
-    void blink(int count);
-    void blink(int status, int command);
-    void flush();
-    void sendAT(String command);
-    bool sendAT(String command, String expected);
-    String readResponse();
-    bool readResponse(String expected);
     //GPRS
     bool connectGprs();
     //GPS
@@ -197,10 +193,10 @@ bool SIM808::connectGprs()
         if (!resp)
         {
             Serial.println("FAILED!");
-            // while (true)
-            // {
-            //     blink(1, i + 1);
-            // }
+            while (true)
+            {
+                blink(1, i + 1);
+            }
         }
 #endif
         if (!resp && i == 4) // The last AT Command returns the status of GPRS
@@ -361,20 +357,24 @@ bool SIM808::postHTTP(const char *url)
     while (!Serial.available() && millis() - sent < 5000)
         ;
     response = readResponse();
+#ifdef debug
     Serial.println("Post Resp : " + response);
     if (response.indexOf("OK") != -1)
         Serial.println("Posted OK");
     else
         Serial.println("Posted Not OK");
+#endif
     delay(1000);
     sendAT("AT+HTTPACTION=1", "OK");
     while (!Serial.available() && millis() - sent < HTTP_RESPONSE)
         ;
     resp = readResponse("200");
+#ifdef debug
     if (!resp)
         Serial.println("Not 200");
     else
         Serial.println("200 OK");
+#endif
     // Serial.println("AT : AT+HTTPREAD");
     sendAT("AT+HTTPREAD", "OK");
     delay(100);
